@@ -60,7 +60,7 @@ if spreadsheet_link:
     exp1,exp2,exp3 = st.columns([2,1,1])
     with exp1:
         ## Completion
-        completion=stp.pills(label="Assignment completion", options=["None", 
+        completion=stp.pills(label="Assignment completion", options=["Didn't submit any", 
                                                             "Missing several", 
                                                             "Missing some",
                                                             "Completed all"])
