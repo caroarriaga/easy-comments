@@ -8,7 +8,23 @@ import numpy as np
 from openai import OpenAI
 
 with st.sidebar:
-    spreadsheet_link=st.text_input(label="Google sheet link", placeholder="Paste link here")
+
+    st.markdown("# Start here")
+
+    spreadsheet_link=st.text_input(label="Google sheet link", placeholder="Paste link here", 
+                                   value="https://docs.google.com/spreadsheets/d/1u_fKROXhxEU8M42XfM6mdm0gbkOiCi8nmrg6fgCabVE/edit#gid=0")
+    
+    st.markdown("""
+    ## Easy Comments
+    A feedback tool for Home Economics teachers.
+                
+    ### How to use it
+    Use the [template](https://docs.google.com/spreadsheets/d/1u_fKROXhxEU8M42XfM6mdm0gbkOiCi8nmrg6fgCabVE/edit#gid=0) to add your students and grades.
+    Then, copy the link above to start creating personalized feedback for each student.
+                
+    ### Custom feedback
+    Based on the input provided, an AI teacher assistant will create specific feedback for the student. Just click the button "create commentary."
+    """)
 
 if spreadsheet_link:
     conn = st.connection("gsheets", type=GSheetsConnection)
@@ -21,9 +37,11 @@ if spreadsheet_link:
     df.dropna(subset=['firstName'],inplace=True)
     df.fullname=df[['firstName','lastName']].agg(' '.join, axis=1)
 
-    class_name = df.general.unique()[0]
+    # class_name = df.general.unique()[0]
 
-    st.write(f"Class name: {class_name}")
+    # st.write(f"Class name: {class_name}")
+
+    st.markdown("# Easy Comments")
 
     nameCol,ratCol,gradeCol= st.columns([3,2,2])
 
